@@ -36,24 +36,43 @@ function displayMovie(movie) {
 }
 
 
-function searchMovies(event){
-    event.preventDefault()
+// function searchMovies(event){
+//     event.preventDefault()
 
-    let input = document.querySelector('[type="search"]').value || ""
-    let count = 0 
+//     let input = document.querySelector('[type="search"]').value || ""
+//     let count = 0 
+//     for(let m of movies){
+//         if(m.title.toUpperCase().indexOf(input.toUpperCase()) == -1){
+//             document.querySelector('#m${m.id').classList.add('d-none')
+//         } else{
+//             document.querySelector('#m${m.id').classList.remove('d-none')
+//             count++
+//         }
+//     }
+//     featured_movie.innerHTML = count == 0 ? 'Nothing was found' : ''
+// } 
+
+function searchMovies(event){
+    event.preventDefault();
+
+    let input = document.querySelector('[type="search"]').value || "";
+    let count = 0; 
     for(let m of movies){
         if(m.title.toUpperCase().indexOf(input.toUpperCase()) == -1){
-            document.querySelector('#m${m.id').classList.add('d-none')
+            document.querySelector(`#m${m.id}`).classList.add('d-none');
         } else{
-            document.querySelector('#m${m.id').classList.remove('d-none')
-            count++
+            document.querySelector(`#m${m.id}`).classList.remove('d-none');
+            count++;
         }
     }
-    featured_movie.innerHTML = count == 0 ? 'Nothing was found' : ''
+    featured_movie.innerHTML = count == 0 ? 'Nothing was found' : '';
 } 
 
-document.querySelector("button").onClick = searchMovies
-document.querySelector('[type="search"]').onSearch = searchMovies
-document.querySelector("form").onSubmit = searchMovies
+// document.querySelector("button").onClick = searchMovies
+// document.querySelector('[type="search"]').onSearch = searchMovies
+// document.querySelector("form").onSubmit = searchMovies
 
+document.querySelector("button").addEventListener("click", searchMovies);
+document.querySelector('[type="search"]').addEventListener("input", searchMovies);
+document.querySelector("form").addEventListener("submit", searchMovies);
 
